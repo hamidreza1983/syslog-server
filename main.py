@@ -1,30 +1,16 @@
 from state import get_state
-from pathlib import Path
 import socket
-import logging
 import json
-from datetime import datetime
 from dataset import create_dataframe
+from config import BASE_DIR, SERVER_IP, SERVER_PORT, logger, all_data, columns
 
-BASE_DIR = Path(__file__).parent
-
-logging.basicConfig(
-    filename=BASE_DIR / 'server.log',
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S',
-    filemode='a',
-)
-
-logger = logging.getLogger(__name__)
 
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-s.bind(('192.168.140.20', 15555))
+s.bind((SERVER_IP, SERVER_PORT))
 
 logger.info("UDP Server started on port 15555")
 
-all_data = []
-columns = None
+
 
 while True:
     data, addr = s.recvfrom(1024)

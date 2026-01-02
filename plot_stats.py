@@ -1,7 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from config import CSV_FILE
 
-CSV_FILE = "stats.csv"
+
 
 df = pd.read_csv(CSV_FILE)
 
