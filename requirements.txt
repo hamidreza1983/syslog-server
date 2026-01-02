@@ -2,3 +2,4 @@ psutil
 matplotlib
 pandas
 pytest
+scikit-learn
